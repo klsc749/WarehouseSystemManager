@@ -12,7 +12,7 @@ import java.util.Date;
 public class ItemStorageInfo {
     private int id;
     private int rowNum;
-    private int colNum;
+    private int storeNum;
     private Date date;
     private int shelfId;
     private int itemId;

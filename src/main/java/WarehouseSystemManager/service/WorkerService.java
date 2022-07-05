@@ -6,17 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class WorkerService {
     @Autowired
     private WorkerMapper workerMapper;
 
-    public int addWorker(Worker worker){
+    public boolean addWorker(Worker worker){
         if(checkAccountExist(worker.getAccountId())){
-            return 0;
+            return false;
         }
-        return workerMapper.addWorker(worker);
+        return workerMapper.addWorker(worker) == 1;
     }
 
     /**
@@ -33,7 +34,6 @@ public class WorkerService {
      * @return ture if the account exits
      */
     public boolean checkAccountExist(String accountId){
-        System.out.println(workerMapper.checkAccountExist(accountId));
         return workerMapper.checkAccountExist(accountId).size() == 1;
     }
 
@@ -46,6 +46,6 @@ public class WorkerService {
     public boolean checkPassword(String accountId, String encodedPassword){
         //TODO: Add md5 encode
         String corrPassword = workerMapper.getPassWord(accountId);
-        return corrPassword == encodedPassword;
+        return Objects.equals(corrPassword, encodedPassword);
     }
 }

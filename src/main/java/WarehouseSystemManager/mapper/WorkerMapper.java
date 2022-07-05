@@ -16,7 +16,7 @@ public interface WorkerMapper {
     public List<Worker> getAllWorkers();
 
     //create a new worker
-    @Insert("INSERT INTO worker(`userName`, `accountId`, `password`, `companyId`, `warehouseId`) " +
+    @Insert("INSERT INTO worker(`userName`, `accountId`, `password`, `company_id`, `warehouse_id`) " +
             "VALUES (#{userName}, #{accountId}, #{password}, #{companyId}, #{warehouseId})")
     public int addWorker(Worker worker);
 

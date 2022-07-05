@@ -10,6 +10,5 @@ import lombok.NoArgsConstructor;
 public class Shelf {
     private int id;
     private int rowSize;
-    private int colSize;
     private int warehouseId;
 }

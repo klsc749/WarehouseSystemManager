@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 public class Warehouse {
     private int id;
     private String location;
+    private int shelfNum;
     private int companyId;
 }
