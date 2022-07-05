@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Item {
-    private static final String ITEM_STATE_GERT_OUT = "GetOut";
-    private static final String ITEM_STATE_STORED = "Store";
+    private static final String ITEM_STATE_GERT_OUT = "gotOut";
+    private static final String ITEM_STATE_STORED = "stored";
 
     private int id;
     private String name;
-    private String type;
+    private String category;
     private String state;
 }
