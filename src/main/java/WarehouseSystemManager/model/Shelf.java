@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Shelf {
     private int id;
-    private int rowSize;
+    private int rowNum;
     private int warehouseId;
 }
