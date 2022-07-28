@@ -14,22 +14,22 @@ public class WarehouseController {
     @Autowired
     private WarehouseService warehouseService;
 
-    @RequestMapping(value = "/getAllWarehouse",method = RequestMethod.GET)
+    @RequestMapping(value = "/get/getAllWarehouse",method = RequestMethod.GET)
     public List<Warehouse> getAllWarehouse(){
         return warehouseService.getAllWarehouse();
     }
 
-    @GetMapping("/getWarehouseInCompany")
+    @GetMapping("/get/getWarehouseInCompany")
     public List<Warehouse> getWarehouseInCompany(@RequestParam("companyId") int companyId){
         return warehouseService.getWarehouseInCompany(companyId);
     }
 
-    @GetMapping("getWarehouse")
+    @GetMapping("/get/getWarehouse")
     public Warehouse gerWarehouse(@RequestParam("warehouseId") int warehouseId){
         return warehouseService.getWarehouse(warehouseId);
     }
 
-    @PostMapping("addWarehouse")
+    @PostMapping("/add/addWarehouse")
     public HttpStatus addWarehouse(@RequestBody Warehouse warehouse){
         return warehouseService.addWarehouse(warehouse) ? HttpStatus.OK : HttpStatus.NOT_MODIFIED;
     }

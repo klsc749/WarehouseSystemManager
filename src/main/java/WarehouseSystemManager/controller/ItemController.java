@@ -14,27 +14,27 @@ public class ItemController {
     @Autowired
     private ItemService itemService;
 
-    @PostMapping("/addItem")
+    @PostMapping("/add/addItem")
     public HttpStatus addItem(@RequestBody Item item){
         return itemService.addItem(item) ? HttpStatus.OK : HttpStatus.NOT_MODIFIED;
     }
 
-    @GetMapping("/getItemInWarehouse")
+    @GetMapping("/get/getItemInWarehouse")
     public List<Item> getItemInWarehouse(@RequestParam("warehouseId") int warehouseId){
         return itemService.getItemInWarehouse(warehouseId);
     }
 
-    @GetMapping("/getItemInShelf")
+    @GetMapping("/get/getItemInShelf")
     public List<Item> getItemInShelf(@RequestParam("shelfId") int shelfId){
         return itemService.getItemInShelf(shelfId);
     }
 
-    @GetMapping("/getItemInShelfRow")
+    @GetMapping("/get/getItemInShelfRow")
     public List<Item> getItemInShelfRow(@RequestParam("shelfId") int shelfId, @RequestParam("rowNum") int rowNum){
         return itemService.getItemInShelfRow(shelfId, rowNum);
     }
 
-    @GetMapping("/getItem")
+    @GetMapping("/get/getItem")
     public Item getItem(@RequestParam("itemId") int itemId){
         return itemService.getItem(itemId);
     }

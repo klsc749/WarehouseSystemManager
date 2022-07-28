@@ -22,8 +22,11 @@ public interface WarehouseMapper {
     @Select("SELECT * FROM warehouse where id = #{warehouseId}")
     public Warehouse getWarehouse(int warehouseId);
 
-    @Insert("INSERT INTO warehouse(location, shelfNum, companyId) " +
-            "VALUES (#{location}, #{shelfNum}, #{companyId})")
+    @Select("SELECT * FROM warehouse WHERE registerCode=#{registerCode}")
+    public Warehouse getWarehouseByRegisterCode(String registerCode);
+
+    @Insert("INSERT INTO warehouse(location, shelfNum, registerCode, companyId) " +
+            "VALUES (#{location}, #{shelfNum}, #{registerCode},#{companyId})")
     public int addWarehouse(Warehouse warehouse);
 
     @Update("UPDATE warehouse SET shelfNum = #{shelfNum + 1} WHERE id = #{id};")

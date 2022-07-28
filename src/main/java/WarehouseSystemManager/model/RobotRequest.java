@@ -4,15 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Worker {
+public class RobotRequest {
     private int id;
-    private String userName;
-    private String accountId;
-    private String password;
-    private String salt;
-    private int companyId;
-    private int warehouseId;
+    private String host;
+    private int dataSize;
+    private Timestamp time;
+    private String acceptState;
+    private int robotId;
 }

@@ -15,7 +15,7 @@ public interface ItemStorageInfoMapper {
     @Select("SELECT * FROM itemStorageInfo where itemId = #{itemId} ORDER BY date")
     public List<ItemStorageInfo> getItemStorageInfo(int itemId);
 
-    @Insert("INSERT INTO `itemstorageinfo` (`rowNum`, `storeNum`, `date`,`shelfId`, `itemId`) " +
+    @Insert("INSERT INTO `itemStorageInfo` (`rowNum`, `storeNum`, `date`,`shelfId`, `itemId`) " +
             "VALUES (#{rowNum}, #{storeNum}, now(), #{shelfId}, #{itemId})")
     public int addItemStorageInfo(ItemStorageInfo itemStorageInfo);
 }

@@ -11,9 +11,12 @@ import java.util.List;
 @Mapper
 @Repository
 public interface CompanyMapper {
-    @Insert("INSERT INTO company(name) VALUES (#{name})")
+    @Insert("INSERT INTO company(name, registerCode) VALUES (#{name}, #{registerCode})")
     public int addCompany(Company company);
 
-    @Select("SELECT * FROM Company")
+    @Select("SELECT * FROM company")
     public List<Company> getAllCompany();
+
+    @Select("SELECT * FROM company WHERE registerCode = #{registerCode}")
+    public Company getCompany(String registerCode);
 }

@@ -16,13 +16,14 @@ public interface WorkerMapper {
     public List<Worker> getAllWorkers();
 
     //create a new worker
-    @Insert("INSERT INTO worker(`userName`, `accountId`, `password`, `companyId`, `warehouseId`) " +
-            "VALUES (#{userName}, #{accountId}, #{password}, #{companyId}, #{warehouseId})")
+    @Insert("INSERT INTO worker(`userName`, `accountId`, `password`, `companyId`, `warehouseId`, `salt`) " +
+            "VALUES (#{userName}, #{accountId}, #{password}, #{companyId}, #{warehouseId}, #{salt})")
     public int addWorker(Worker worker);
 
     @Select("SELECT id FROM worker WHERE accountId = #{accountId}")
     public List<String> checkAccountExist(String accountId);
 
-    @Select("SELECT password FROM worker WHERE accountId=#{accountId}")
-    public String getPassWord(String accountId);
+    @Select("SELECT * FROM worker WHERE accountId=#{accountId}")
+    public Worker getWorker(String accountId);
+
 }

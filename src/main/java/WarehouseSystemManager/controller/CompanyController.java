@@ -17,12 +17,12 @@ public class CompanyController {
     @Autowired
     private CompanyService companyService;
 
-    @RequestMapping(value = "/getAllCompany", method = RequestMethod.GET)
+    @RequestMapping(value = "/get/getAllCompany", method = RequestMethod.GET)
     public List<Company> getAllCompany(){
         return companyService.getAllCompany();
     }
 
-    @RequestMapping(value = "/addCompany", method = RequestMethod.POST)
+    @RequestMapping(value = "/add/addCompany", method = RequestMethod.POST)
     public HttpStatus addCompany(@RequestBody Company company){
         return companyService.addCompany(company) ? HttpStatus.OK : HttpStatus.NOT_MODIFIED;
     }

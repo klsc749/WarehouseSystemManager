@@ -12,4 +12,5 @@ public class Warehouse {
     private String location;
     private int shelfNum;
     private int companyId;
+    private String registerCode;
 }

@@ -14,22 +14,22 @@ public class ShelfController {
     @Autowired
     private ShelfService shelfService;
 
-    @GetMapping("/getAllShelf")
+    @GetMapping("/get/getAllShelf")
     public List<Shelf> getAllShelf(){
         return shelfService.getAllShelf();
     }
 
-    @GetMapping("/getShelfInWarehouse")
+    @GetMapping("/get/getShelfInWarehouse")
     public List<Shelf> getShelfInWarehouse(@RequestParam("warehouseId") int warehouseId){
         return shelfService.getShelfInWarehouse(warehouseId);
     }
 
-    @GetMapping("/getShelf")
+    @GetMapping("/get/getShelf")
     public Shelf getShelf(@RequestParam("shelfId") int shelfId){
         return shelfService.getShelf(shelfId);
     }
 
-    @PostMapping("/addShelf")
+    @PostMapping("/add/addShelf")
     public HttpStatus addShelf(@RequestBody Shelf shelf){
         return shelfService.addShelf(shelf) ? HttpStatus.OK : HttpStatus.NOT_MODIFIED;
     }

@@ -14,12 +14,12 @@ public class ItemStorageInfoController {
     @Autowired
     private ItemStorageInfoService itemStorageInfoService;
 
-    @PostMapping("/addItemStorageInfo")
+    @PostMapping("/add/addItemStorageInfo")
     public HttpStatus addItemStorageInfo(@RequestBody ItemStorageInfo itemStorageInfo){
         return itemStorageInfoService.addItemStorageInfo(itemStorageInfo) ? HttpStatus.OK : HttpStatus.NOT_MODIFIED;
     }
 
-    @GetMapping("/getItemStorageInfo")
+    @GetMapping("/get/getItemStorageInfo")
     public List<ItemStorageInfo> getItemStorageInfo(@RequestParam("itemId") int itemId){
         return itemStorageInfoService.getItemStorageInfo(itemId);
     }

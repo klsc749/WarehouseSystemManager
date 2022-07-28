@@ -16,13 +16,18 @@ public class WorkerController {
     @Autowired
     private WorkerService workerService;
 
-    @RequestMapping(value = "/getAllWorker", method = RequestMethod.GET)
+    @RequestMapping(value = "/get/getAllWorker", method = RequestMethod.GET)
     public List<Worker> getAll(){
         return workerService.getAllWorker();
     }
 
-    @RequestMapping(value = "/addWorker", method = RequestMethod.POST)
-    public HttpStatus addWorker(@RequestBody Worker worker){
-        return workerService.addWorker(worker) ? HttpStatus.OK : HttpStatus.NOT_MODIFIED;
+    @RequestMapping(value = "/add/addWorker", method = RequestMethod.POST)
+    public String addWorker(@RequestBody Worker worker, @RequestParam("companyRegisterCode") String companyRegisterCode, @RequestParam("warehouseRegisterCode") String warehouseRegisterCode){
+        return workerService.Register(worker, companyRegisterCode, warehouseRegisterCode);
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public boolean login(@RequestParam("accountId") String accountId, @RequestParam("password") String password){
+        return workerService.checkPassword(accountId, password);
     }
 }

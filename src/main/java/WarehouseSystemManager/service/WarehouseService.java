@@ -1,10 +1,13 @@
 package WarehouseSystemManager.service;
 
+import WarehouseSystemManager.common.MD5Util;
 import WarehouseSystemManager.mapper.WarehouseMapper;
 import WarehouseSystemManager.model.Warehouse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -53,6 +56,17 @@ public class WarehouseService {
      * @return true if the warehouse is added
      */
     public boolean addWarehouse(Warehouse warehouse){
+        warehouse.setRegisterCode(getRegisterCode());
         return warehouseMapper.addWarehouse(warehouse) == 1;
+    }
+
+    public Warehouse getWarehouse(String registerCode){
+        return warehouseMapper.getWarehouseByRegisterCode(registerCode);
+    }
+
+    private String getRegisterCode(){
+        Date date = new Date();
+        Timestamp timestamp = new Timestamp(date.getTime());
+        return MD5Util.md5(timestamp.toString());
     }
 }

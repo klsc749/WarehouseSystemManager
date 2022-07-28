@@ -15,7 +15,6 @@ public interface ItemMapper {
     @Select("SELECT * FROM ITEM")
     public List<Item> getAllItem();
 
-    //TODO 联表查询
     @Select("SELECT * FROM item WHERE state=\"stored\" AND id IN " +
             "(SELECT itemId FROM itemStorageInfo WHERE (itemId, `date`) IN " +
             "(SELECT itemId, MAX(`date`) FROM itemStorageInfo GROUP BY itemId) " +

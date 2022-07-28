@@ -1,6 +1,9 @@
 package WarehouseSystemManager.service;
 
+import WarehouseSystemManager.common.MD5Util;
 import WarehouseSystemManager.mapper.WorkerMapper;
+import WarehouseSystemManager.model.Company;
+import WarehouseSystemManager.model.Warehouse;
 import WarehouseSystemManager.model.Worker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +15,10 @@ import java.util.Objects;
 public class WorkerService {
     @Autowired
     private WorkerMapper workerMapper;
+    @Autowired
+    private CompanyService companyService;
+    @Autowired
+    private WarehouseService warehouseService;
 
     public boolean addWorker(Worker worker){
         if(checkAccountExist(worker.getAccountId())){
@@ -45,7 +52,31 @@ public class WorkerService {
      */
     public boolean checkPassword(String accountId, String encodedPassword){
         //TODO: Add md5 encode
-        String corrPassword = workerMapper.getPassWord(accountId);
+        Worker worker = workerMapper.getWorker(accountId);
+        if(worker==null){
+            return false;
+        }
+        String corrPassword = MD5Util.md5(worker.getPassword()+worker.getSalt());
+        encodedPassword = MD5Util.md5(encodedPassword + worker.getSalt());
         return Objects.equals(corrPassword, encodedPassword);
+    }
+
+    public String Register(Worker worker, String companyRegisterCode, String warehouseRegisterCode){
+        if(checkAccountExist(worker.getAccountId())){
+            return "The account id already exists";
+        }
+        Warehouse warehouse = warehouseService.getWarehouse(warehouseRegisterCode);
+        System.out.println(warehouseRegisterCode);
+        if(warehouse == null){
+            return "Warehouse register code is wrong";
+        }
+        Company company = companyService.getCompany(companyRegisterCode);
+        if(company == null){
+            return "Company register code is wrong";
+        }
+        worker.setWarehouseId(warehouse.getId());
+        worker.setCompanyId(company.getId());
+        worker.setSalt(MD5Util.getSalt());
+        return workerMapper.addWorker(worker) == 1 ? "Register successfully" : "Fail to register";
     }
 }
